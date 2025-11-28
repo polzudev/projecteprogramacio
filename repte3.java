@@ -7,7 +7,7 @@ public class repte3 {
         String[] hotels = { "Hotel1", "Hotel2", "Hotel3", "Hotel4", "Hotel5", "Hotel6", "Hotel7", "Hotel8",
                 "Hotel9", "Hotel10", "Hotel11", "Hotel12", "Hotel13", "Hotel14", "Hotel15" };
         String[][] habitacions = new String[15][10];
-        int opcio, habitacio;
+        int opcio;
         String hotel, nom_client;
         System.out.println("----Benvingut a la gestio de hotels----");
 
@@ -39,22 +39,20 @@ public class repte3 {
 
     }
 
+    // funcio check-in
     public static void check_in(String hotel, String client, String[] hotels, Scanner entrada, String[][] habitacions,
             String nom_client) {
+       
 
         int index_hotel = index_hotel(hotel, hotels);
+        // En aquest if, busquem una habitacio lliure per al client
         if (index_hotel != -1) {
-            for (int i = 0; i < hotels.length; i++) {
-                if (habitacions[index_hotel][i] == null) {
-                    habitacions[index_hotel][i] = nom_client;
-
-                    break;
-                }
+            int i = 0;
+            while (i < habitacions[index_hotel].length && habitacions[index_hotel][i] != null) {
+                i++;
             }
-            for (int i = 0; i < habitacions[index_hotel].length; i++) {
-                if (habitacions[index_hotel][i] != null) {
-                    System.out.println(habitacions[index_hotel][i]);
-                }
+            if (i < habitacions[index_hotel].length) {
+                habitacions[index_hotel][i] = nom_client;
             }
 
         }
@@ -63,7 +61,7 @@ public class repte3 {
 
     public static int index_hotel(String hotel, String[] hotels) {
         int index_hotel = -1;
-
+        // Busquem el index del hotel que el usuari a insertat
         for (int i = 0; i < hotels.length; i++) {
             if (hotels[i].equalsIgnoreCase(hotel)) {
                 index_hotel = i;
@@ -77,18 +75,16 @@ public class repte3 {
     public static void check_out(String nom_client, String hotel, String[] hotels, String[][] habitacions) {
         int index_hotel = index_hotel(hotel, hotels);
         if (index_hotel != -1) {
-            for (int i = 0; i < hotels.length; i++) {
-                if (habitacions[index_hotel][i].equalsIgnoreCase(nom_client)) {
-                    habitacions[index_hotel][i] = null;
-
-                    break;
-                }
+        int i = 0;
+            while (i<habitacions[index_hotel].length&&habitacions[index_hotel][i]!=null) {
+                
+                i++;
             }
         }
         for (int i = 0; i < habitacions[index_hotel].length; i++) {
-                if (habitacions[index_hotel][i] != null) {
-                    System.out.println(habitacions[index_hotel][i]);
-                }
+            if (habitacions[index_hotel][i] != null) {
+                System.out.println(habitacions[index_hotel][i]);
             }
+        }
     }
 }
