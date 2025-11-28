@@ -76,15 +76,16 @@ public class repte3 {
         int index_hotel = index_hotel(hotel, hotels);
         if (index_hotel != -1) {
         int i = 0;
-            while (i<habitacions[index_hotel].length&&habitacions[index_hotel][i]!=null) {
-                
+
+            do{
+                if (habitacions[index_hotel][i].equalsIgnoreCase(nom_client)) {
+                    habitacions[index_hotel][i] = null;
+                }
                 i++;
             }
-        }
-        for (int i = 0; i < habitacions[index_hotel].length; i++) {
-            if (habitacions[index_hotel][i] != null) {
-                System.out.println(habitacions[index_hotel][i]);
-            }
+            while (i<habitacions[index_hotel].length&&habitacions[index_hotel][i]!=null);
+                
+            
         }
     }
 }
